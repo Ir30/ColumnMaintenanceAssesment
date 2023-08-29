@@ -36,7 +36,7 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
 
         [HttpGet]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> getColumnsByTable([FromRoute] Guid id)
+        public async Task<IActionResult> getColumnsByTableId([FromRoute] Guid id)
         {
             try
             {

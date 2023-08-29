@@ -12,4 +12,8 @@ export class ApiService {
   getTableNames =()=>{
     return this.http.get("https://localhost:7049/api/Table/getAllTableNames");
   }
+
+  getColumnByTableId =(id:string)=>{
+    return this.http.get("https://localhost:7049/api/Table/"+id);
+  }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XNgdSou6L2vUnBBjbD3cuaLyvVKdzTfI4YGii1O6T/2CXlQQq4Bd89NkCgOTothCItAobWnmwPoajIBhSU9wzw==",
+  "dgSpecHash": "rWeBKWgEpWOi+0V//VJvarDFNCmp+JkUg6c2gWzLMapaTKV+p+AEtn4pqkLufTa5cVNOM6d2EJuHQtcjVYgeEg==",
   "success": true,
   "projectFilePath": "D:\\programming\\dotNet\\ColumnMaintenance_AngularAssesment\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj",
   "expectedPackageFiles": [
@@ -154,10 +154,10 @@
     "C:\\Users\\muhammed.c\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\muhammed.c\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\muhammed.c\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\muhammed.c\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.20\\microsoft.windowsdesktop.app.ref.6.0.20.nupkg.sha512",
-    "C:\\Users\\muhammed.c\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.20\\microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
-    "C:\\Users\\muhammed.c\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.20\\microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512",
-    "C:\\Users\\muhammed.c\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.20\\microsoft.netcore.app.host.win-x64.6.0.20.nupkg.sha512"
+    "C:\\Users\\muhammed.c\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.21\\microsoft.windowsdesktop.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\muhammed.c\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.21\\microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\muhammed.c\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.21\\microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\muhammed.c\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.21\\microsoft.netcore.app.host.win-x64.6.0.21.nupkg.sha512"
   ],
   "logs": [
     {

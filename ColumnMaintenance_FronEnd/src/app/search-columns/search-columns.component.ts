@@ -10,20 +10,32 @@ export class SearchColumnsComponent  {
 
   ngOnInit() {
     this.getTableNames();
+    // this.getColumnDetailesByTableId("13219f25-7a89-4335-98fb-049a850281ee")
   }
 
   constructor(private api:ApiService){
   }
 
   tableNames:any=[]
+  columnDetailes:any =[]
+  page: number = 1;
+
   getTableNames = ()=>{
     this.api.getTableNames().subscribe(
       (response:any)=>{
         this.tableNames=response
-        console.log(response[0])
       }
     )
   }
 
+  
+  
+  getColumnDetailesByTableId = (id:string) =>{
+    this.api.getColumnByTableId(id).subscribe(
+      (response:any)=>{
+        this.columnDetailes=response[0].aocolumns
+      }
+    )
+  }
 
 }
