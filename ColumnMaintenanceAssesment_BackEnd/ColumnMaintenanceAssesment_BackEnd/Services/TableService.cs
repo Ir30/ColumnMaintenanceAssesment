@@ -1,4 +1,6 @@
-﻿using ColumnMaintenanceAssesment_BackEnd.Models;
+﻿using AutoMapper;
+using ColumnMaintenanceAssesment_BackEnd.Dto;
+using ColumnMaintenanceAssesment_BackEnd.Models;
 using ColumnMaintenanceAssesment_BackEnd.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Immutable;
@@ -7,10 +9,12 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services
 {
     public class TableService : TableInterface
     {
+        private readonly IMapper mapper;
         private readonly ColumnMaintenanceDbContext dbContext;
 
-        public TableService(ColumnMaintenanceDbContext dbContext)
+        public TableService(IMapper mapper, ColumnMaintenanceDbContext dbContext)
         {
+            this.mapper = mapper;
             this.dbContext = dbContext;
         }
 
@@ -20,10 +24,13 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services
             return columns;
         }
 
-        public async Task<List<string>> getTableNames()
+        public async Task<List<TableNamesWithIdDto>> getTableNames()
         {
-            var tables = await dbContext.Aotables.Select(t => t.Name).ToListAsync();
-            return tables;
+            var tables = await dbContext.Aotables.ToListAsync();
+    
+            var tableDto = mapper.Map<List<TableNamesWithIdDto>>(tables);
+
+            return tableDto;
         }
     }
 }

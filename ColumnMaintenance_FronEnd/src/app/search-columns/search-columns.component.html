@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
+            <div class="row ">
+                <div style="border-radius:15px ;" class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-5 p-5 mb-5  bg-light container-fluid">
+                    <h1 class="text-dark m-1 text-center">SERCH COLUMNS</h1>
+                    <hr class="m-5">
+                    
+                    <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 m-5">
+                        <!-- Table drop down starting -->
+                        <div class="row mb-5">
+                            <div class="dropdown">
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Aotables
+                                </a>
+                              
+                                <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuLink">
+                                  <li *ngFor="let i of tableNames"><a class="dropdown-item" href="#">{{i.name}}</a></li>
+                                </ul>
+                              </div>
+                        </div>
+                        <!-- Table drop down Ending -->
+
+                        <!-- serching input field starting -->
+                        <div class="row">
+                            <div class="col col-lg-2">
+                                <label for="" class="label-control">Table Column Name:</label>
+                            </div>
+                            <div class="col col-lg-4">
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col col-lg-4">
+                                <button class="btn btn-primary">Serch</button>
+                            </div>
+                        </div>
+                        <!-- serching input field Ending -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

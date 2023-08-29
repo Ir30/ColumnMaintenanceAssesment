@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\programming\\dotNet\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj": {}
+    "D:\\programming\\dotNet\\ColumnMaintenance_AngularAssesment\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj": {}
   },
   "projects": {
-    "D:\\programming\\dotNet\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj": {
+    "D:\\programming\\dotNet\\ColumnMaintenance_AngularAssesment\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\programming\\dotNet\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj",
+        "projectUniqueName": "D:\\programming\\dotNet\\ColumnMaintenance_AngularAssesment\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj",
         "projectName": "ColumnMaintenanceAssesment_BackEnd",
-        "projectPath": "D:\\programming\\dotNet\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj",
+        "projectPath": "D:\\programming\\dotNet\\ColumnMaintenance_AngularAssesment\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd.csproj",
         "packagesPath": "C:\\Users\\muhammed.c\\.nuget\\packages\\",
-        "outputPath": "D:\\programming\\dotNet\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\obj\\",
+        "outputPath": "D:\\programming\\dotNet\\ColumnMaintenance_AngularAssesment\\ColumnMaintenanceAssesment_BackEnd\\ColumnMaintenanceAssesment_BackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,18 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.AspNet.WebApi.Cors": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.10, )"
@@ -61,7 +73,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[6.5.0, )"
             }
           },
           "imports": [

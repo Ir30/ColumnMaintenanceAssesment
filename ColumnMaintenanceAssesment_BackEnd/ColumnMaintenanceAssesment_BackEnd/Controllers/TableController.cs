@@ -1,13 +1,15 @@
 ﻿using ColumnMaintenanceAssesment_BackEnd.Models;
-using ColumnMaintenanceAssesment_BackEnd.Services;
 using ColumnMaintenanceAssesment_BackEnd.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ColumnMaintenanceAssesment_BackEnd.Controllers
 {
     [ApiController]
-    [Route("api/controller")]
+    [Route("api/[controller]")]
+
+
     public class TableController : Controller
     {
         private readonly ColumnMaintenanceDbContext dbContext;
@@ -62,5 +64,18 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        //[HttpPost]
+        //public async Task<IActionResult> AddAllTableNames()
+        //{
+        //    try
+        //    {
+        //        var names = await tableInterface.getTableNames();mu
+        //        return Ok(names);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
     }
 }
