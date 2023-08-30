@@ -18,7 +18,9 @@ export class SearchColumnsComponent  {
 
   tableNames:any=[]
   columnDetailes:any =[]
-  page: number = 1;
+  page: number = 1
+  lengthofData = 0;
+  searchText=''
 
   getTableNames = ()=>{
     this.api.getTableNames().subscribe(
@@ -34,6 +36,7 @@ export class SearchColumnsComponent  {
     this.api.getColumnByTableId(id).subscribe(
       (response:any)=>{
         this.columnDetailes=response[0].aocolumns
+        this.lengthofData = this.columnDetailes.length
       }
     )
   }
