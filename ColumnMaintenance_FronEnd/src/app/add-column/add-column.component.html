@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
+            <div class="row ">
+                <div style="border-radius:15px ;" class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-5 p-5 mb-5  bg-light container-fluid">
+                    <h1 class="text-dark m-1 text-center">ADD COLUMNS</h1>
+                    <hr class="m-5">
+                    
+                    <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 m-2">
+                        <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+                            <div class="mb-2">
+                                <label for="exampleInputEmail1" class="form-label">Table</label>
+                                <div class="row mb-5">
+                                    <div class="dropdown">
+                                        <a class="btn btn-primary dropdown-toggle"  role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Tables
+                                        </a>
+                                      
+                                        <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuLink">
+                                          <li  *ngFor="let i of tableNames" (click)="onClickTableSelect(i.id)">{{i.name}}</li>
+                                        </ul>
+                                      </div>
+                                </div>
+                                 
+                              </div>
+                            <div class="mb-2">
+                              <label for="exampleInputEmail1" class="form-label">Name</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="name">
+                            </div>
+                            <div class="mb-2">
+                              <label for="exampleInputEmail1" class="form-label">Data Type</label>
+                                
+                                    <select class="form-select" aria-label="Default select example" formControlName="dataType">
+                                        <option selected>Select a Data Type</option>
+                                        <option value="Date">Date</option>
+                                        <option value="Decimal">Decimal</option>
+                                        <option value="Integer">Integer</option>
+                                        <option value="Text">Text</option>
+                                        <option value="Unique Identifier">Unique Identifier</option>
+                                    </select>
+                               
+                            </div>
+                            <div class="mb-1">
+                                <label for="exampleInputPassword1" class="form-label">Size</label>
+                                <input type="number" class="form-control" formControlName="size">
+                            </div>
+                            <div class="mb-1">
+                                <label for="exampleInputPassword1" class="form-label">Scale</label>
+                                <input type="number" class="form-control" formControlName="scale">
+                            </div>
+                            <div class="mb-1 form-check">
+                                <label class="form-check-label" for="exampleCheck1">Encrypted</label>
+                                <input type="checkbox" class="form-check-input" formControlName="encrypted">
+                            </div>
+                            <div class="mb-1">
+                                <label for="exampleInputPassword1" class="form-label">Distortion</label>
+                                <input type="text" class="form-control" formControlName="distortion">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Comments</label>
+                                <input type="text" class="form-control" formControlName="comments">
+                            </div>
+                            <button type="submit" class="btn btn-primary button-submit">Submit</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

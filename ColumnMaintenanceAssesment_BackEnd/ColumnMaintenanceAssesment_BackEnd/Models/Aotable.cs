@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ColumnMaintenanceAssesment_BackEnd.Models;
 
@@ -47,5 +48,5 @@ public partial class Aotable
 
     public int? Identifier { get; set; }
 
-    public virtual ICollection<Aocolumn> Aocolumns { get; set; } = new List<Aocolumn>();
+    public virtual ICollection<Aocolumn> Aocolumns { get; set; }
 }

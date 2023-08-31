@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<ColumnMaintenanceDbContext>();
 builder.Services.AddScoped<TableInterface,TableService>();
+builder.Services.AddScoped<ColumnInterface,ColumnServices>();
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 builder.Services.AddControllers();

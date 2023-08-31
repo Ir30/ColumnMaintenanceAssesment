@@ -10,7 +10,6 @@ export class SearchColumnsComponent  {
 
   ngOnInit() {
     this.getTableNames();
-    // this.getColumnDetailesByTableId("13219f25-7a89-4335-98fb-049a850281ee")
   }
 
   constructor(private api:ApiService){
@@ -35,6 +34,7 @@ export class SearchColumnsComponent  {
   getColumnDetailesByTableId = (id:string) =>{
     this.api.getColumnByTableId(id).subscribe(
       (response:any)=>{
+        console.log(response);
         this.columnDetailes=response[0].aocolumns
         this.lengthofData = this.columnDetailes.length
       }

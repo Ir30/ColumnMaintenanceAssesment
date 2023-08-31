@@ -8,8 +8,6 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
-
     public class TableController : Controller
     {
         private readonly ColumnMaintenanceDbContext dbContext;

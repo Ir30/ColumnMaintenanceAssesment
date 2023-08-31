@@ -8,18 +8,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './search.pipe';
+import { AddColumnComponent } from './add-column/add-column.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ViewColumnComponent } from './view-column/view-column.component';
 @NgModule({
   declarations: [
     AppComponent,
     SearchColumnsComponent,
-    SearchPipe
+    SearchPipe,
+    AddColumnComponent,
+    ViewColumnComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

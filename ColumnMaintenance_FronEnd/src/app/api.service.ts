@@ -16,4 +16,8 @@ export class ApiService {
   getColumnByTableId =(id:string)=>{
     return this.http.get("https://localhost:7049/api/Table/"+id);
   }
+
+  addColumn = (data:any)=>{
+    return this.http.post("https://localhost:7049/api/Column",data)
+  }
 }
