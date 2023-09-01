@@ -3,7 +3,7 @@
         <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
             <div class="row ">
                 <div style="border-radius:15px ;" class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-5 p-5 mb-5  bg-light container-fluid">
-                    <h1 class="text-dark m-1 text-center">ADD COLUMNS</h1>
+                    <h1 class="text-dark m-1 text-center">EDIT COLUMNS</h1>
                     <hr class="m-5">
                     
                     <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 m-2">
@@ -17,24 +17,15 @@
                                         </a>
                                       
                                         <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuLink">
-                                          <li  *ngFor="let i of tableNames" (click)="onClickTableSelect(i.id,i.name)">{{i.name}}</li>
+                                          <li (click)="ChangeTableId(i.id)"  *ngFor="let i of tableNames">{{i.name}}</li>
                                         </ul>
-                                    </div>
+                                      </div>
                                 </div>
-                                 
-                            </div>
-                            <!-- <div class="mb-2">
-                                <label for="exampleInputEmail1" class="form-label">Table Name</label>
-                                <input type="text" class="form-control"  aria-describedby="emailHelp" formControlName="tableName">
-                            </div> -->
+                              </div>
+
                             <div class="mb-2">
                               <label for="exampleInputEmail1" class="form-label">Name</label>
-                              <input type="text" class="form-control"  aria-describedby="emailHelp" formControlName="name">
-                            </div>
-                            <div>
-                                <small  *ngIf="!reactiveForm.get('name').valid && reactiveForm.get('name').touched">
-                                    Name is a required field</small>
-                               
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="name">
                             </div>
                             <div class="mb-2">
                               <label for="exampleInputEmail1" class="form-label">Data Type</label>
@@ -49,25 +40,13 @@
                                     </select>
                                
                             </div>
-                            <div>
-                                <small  *ngIf="!reactiveForm.get('dataType').valid && reactiveForm.get('dataType').touched">
-                                    Please select a data type</small>
-                            </div>
                             <div class="mb-1">
                                 <label for="exampleInputPassword1" class="form-label">Size</label>
                                 <input type="number" class="form-control" formControlName="size">
                             </div>
-                            <div>
-                                <small  *ngIf="!reactiveForm.get('size').valid && reactiveForm.get('size').touched">
-                                    Size is a required field</small>
-                            </div>
                             <div class="mb-1">
                                 <label for="exampleInputPassword1" class="form-label">Scale</label>
                                 <input type="number" class="form-control" formControlName="scale">
-                            </div>
-                            <div>
-                                <small  *ngIf="!reactiveForm.get('scale').valid && reactiveForm.get('scale').touched">
-                                    Scale is a required field</small>
                             </div>
                             <div class="mb-1 form-check">
                                 <label class="form-check-label" for="exampleCheck1">Encrypted</label>
@@ -83,8 +62,8 @@
                             </div>
                             <button type="submit" class="btn btn-primary button-submit" [disabled]="!reactiveForm.valid">Submit</button>
                           </form>
-                          <div class="col col-lg-12 text-center ">
-                            <button class="btn btn-outline-secondary my-2" routerLink="/">Back -></button>
+                          <div class="col col-lg-12 ">
+                            <button class="btn btn-outline-dark my-2 float-end" routerLink="/">Back -></button>
                           </div>
                     </div>
                 </div>

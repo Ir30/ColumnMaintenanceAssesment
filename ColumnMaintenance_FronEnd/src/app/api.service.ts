@@ -20,4 +20,14 @@ export class ApiService {
   addColumn = (data:any)=>{
     return this.http.post("https://localhost:7049/api/Column",data)
   }
+
+  deleteColumn = (id:string)=>{
+    return this.http.delete("https://localhost:7049/api/Column/"+id)
+  }
+
+  editColumn = (data:any,id:string)=>{
+    return this.http.put("https://localhost:7049/api/Column/"+id,data)
+  }
+
+  
 }

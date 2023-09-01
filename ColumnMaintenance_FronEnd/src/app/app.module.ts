@@ -11,13 +11,17 @@ import { SearchPipe } from './search.pipe';
 import { AddColumnComponent } from './add-column/add-column.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewColumnComponent } from './view-column/view-column.component';
+import { EditColumnComponent } from './edit-column/edit-column.component';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     SearchColumnsComponent,
     SearchPipe,
     AddColumnComponent,
-    ViewColumnComponent
+    ViewColumnComponent,
+    EditColumnComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

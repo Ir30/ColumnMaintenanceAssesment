@@ -1,1 +1,27 @@
-<p>view-column works!</p>
+<div class="container">
+    <div class="row">
+        <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
+            <div class="row ">
+                <div style="border-radius:15px ;" class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-5 p-5 mb-5  bg-light container-fluid">
+                    <div class="card">
+                        <h5 class="card-header">Column Detiles</h5>
+                        <div class="card-body m-5">
+                          <h5 class="card-title">{{columnDetails.name}}</h5>
+                          <p class="card-text">Type: {{columnDetails.dataType}}</p>
+                          <p class="card-text">Size: {{columnDetails.dataSize}}</p>
+                          <p class="card-text">Scale: {{columnDetails.dataScale}}</p>
+                          <p class="card-text">Encrypted: {{columnDetails.encrypted}}</p>
+                          <p class="card-text">Distortion: {{columnDetails.distortion}}</p>
+                          <p class="card-text">Comment: {{columnDetails.comment}}</p>
+
+                          <div class="col col-lg-12 text-center">
+                            <button class="btn btn-outline-dark my-2" routerLink="/">Back -></button>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

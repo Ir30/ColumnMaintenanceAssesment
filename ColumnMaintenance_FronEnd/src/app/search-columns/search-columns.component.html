@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
             <div class="row ">
@@ -15,22 +15,23 @@
                                 </a>
                               
                                 <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuLink">
-                                  <li (click)="getColumnDetailesByTableId(i.id)" *ngFor="let i of tableNames">{{i.name}}</li>
+                                  <li (click)="getColumnDetailesByTableId(i.id,i.name)" *ngFor="let i of tableNames">{{i.name}}</li>
                                 </ul>
                               </div>
                         </div>
                         <!-- Table drop down Ending -->
 
                         <!-- serching input field starting -->
+                        <div class="col col-lg-12 mb-3">
+                            <label for="" class="label-control">Selected Table: <b>{{selectedTableName}}</b></label>
+                        </div>
                         <div class="row">
-                            <div class="col col-lg-2">
-                                <label for="" class="label-control">Table Column Name:</label>
-                            </div>
+
                             <div class="col col-lg-4">
                                 <input type="text" class="form-control" placeholder="Search a column" name="searchText" [(ngModel)]="searchText">
                             </div>
-                            <div class="col col-lg-4 me">
-                                <button class="btn btn-outline-secondary"  routerLink="/addColumn">Create New Column</button>
+                            <div class="col col-lg-7 mx-2">
+                                <button class="btn btn-outline-dark float-end"  routerLink="/addColumn">Create New Column -></button>
                             </div>
                         </div>
                         <!-- serching input field Ending -->
@@ -39,22 +40,23 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Type</th>
                                     <th scope="col">Comment</th>
                                     <th scope="col">Click To</th>
                                     <th scope="col">Click To</th>
+                                    <th scope="col">Click To</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let i of columnDetailes | search:searchText | paginate: { itemsPerPage: 5, currentPage: page,totalItems:lengthofData}">
-                                        <th scope="row">1</th>
                                         <td>{{i.name}}</td>
                                         <td>{{i.type}}</td>
                                         <td>{{i.comment}}</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td routerLink="/viewColumns" (click)="sendColumnData(i)">View</td>
+                                        <td style="color: blue;" routerLink="/editColumn" (click)="sendColumnData(i)">Update</td>
+                                        <td (click)="deleteColumn(i.id,i.name)" style="color: red;">Delete</td>
                                     </tr>
                                 </tbody>
                             </table>

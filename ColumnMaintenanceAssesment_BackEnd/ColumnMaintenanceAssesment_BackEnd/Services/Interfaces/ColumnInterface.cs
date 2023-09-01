@@ -6,6 +6,6 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services.Interfaces
     {
         public Task<Aocolumn> addColumn(Aocolumn column);
         public Task<Aocolumn> DeleteColumn(Guid id);
-        public Task<Aocolumn> EditColumn(Guid id, Aocolumn aocolumn);
+        public Task<bool> EditColumn(Guid id, Aocolumn aocolumn);
     }
 }

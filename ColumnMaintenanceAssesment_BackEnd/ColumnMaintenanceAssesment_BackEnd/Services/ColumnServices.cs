@@ -33,26 +33,69 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services
             return null;
         }
 
-        public async Task<Aocolumn> EditColumn(Guid id, Aocolumn column)
+        public async Task<bool> EditColumn(Guid id, Aocolumn column)
         {
             var ColumnDetails = await dbContext.Aocolumns.SingleOrDefaultAsync(option => option.Id == id);
             if (ColumnDetails != null)
             {
-                ColumnDetails.Id = column.Id;
-                ColumnDetails.TableId = column.TableId;
-                ColumnDetails.Name = column.Name;
-                ColumnDetails.Description = column.Description;
-                ColumnDetails.DataType = column.DataType;
-                ColumnDetails.DataSize = column.DataSize;
-                ColumnDetails.DataScale = column.DataScale;
-                ColumnDetails.Comment = column.Comment;
-                ColumnDetails.Encrypted = column.Encrypted;
-                ColumnDetails.Distortion = column.Distortion;
+                if (id != ColumnDetails.Id)
+                {
+                    return false;
+                }
+
+                if (column.TableId != null || column.TableId== Guid.Empty)
+                {
+                    ColumnDetails.TableId = column.TableId;
+                }
+                if (!string.IsNullOrWhiteSpace(column.Name))
+                {
+                    ColumnDetails.Name = column.Name;
+                }
+
+                if (!string.IsNullOrWhiteSpace(column.Description))
+                {
+                    ColumnDetails.Description = column.Description;
+                }
+
+                if (!string.IsNullOrWhiteSpace(column.DataType))
+                {
+                    ColumnDetails.DataType = column.DataType;
+                }
+
+                if (!string.IsNullOrWhiteSpace(column.Name))
+                {
+                    ColumnDetails.Name = column.Name;
+                }
+
+                if (column.DataSize != null)
+                {
+                    ColumnDetails.DataSize = column.DataSize;
+                }
+
+                if (column.DataScale != null)
+                {
+                    ColumnDetails.DataScale = column.DataScale;
+                }
+
+                if (!string.IsNullOrWhiteSpace(column.Comment))
+                {
+                    ColumnDetails.Comment = column.Comment;
+                }
+
+                if ( column.Encrypted==null )
+                {
+                    ColumnDetails.Encrypted = column.Encrypted;
+                }
+
+                if (!string.IsNullOrWhiteSpace(column.Distortion))
+                {
+                    ColumnDetails.Distortion = column.Distortion;
+                }
 
                 await dbContext.SaveChangesAsync();
-                return column;
+                return true;
             }
-            else { return null; }
+            else { return false; }
         }
     }
 }

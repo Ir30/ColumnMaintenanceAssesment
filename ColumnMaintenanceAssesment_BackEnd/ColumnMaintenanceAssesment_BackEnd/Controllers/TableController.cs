@@ -10,27 +10,13 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
     [Route("api/[controller]")]
     public class TableController : Controller
     {
-        private readonly ColumnMaintenanceDbContext dbContext;
         private readonly TableInterface tableInterface;
 
-        public TableController(ColumnMaintenanceDbContext dbContext,TableInterface tableInterface)
+        public TableController(TableInterface tableInterface)
         {
-            this.dbContext = dbContext;
             this.tableInterface = tableInterface;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> getAllTables()
-        {
-            try
-            {
-                var tables = await dbContext.Aotables.ToListAsync();
-                return Ok(tables);
-            }catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            } 
-        }
 
         [HttpGet]
         [Route("{id:Guid}")]
@@ -62,18 +48,5 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        //[HttpPost]
-        //public async Task<IActionResult> AddAllTableNames()
-        //{
-        //    try
-        //    {
-        //        var names = await tableInterface.getTableNames();mu
-        //        return Ok(names);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
     }
 }

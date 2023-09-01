@@ -27,19 +27,19 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
                     var result =await columnInterface.addColumn(column);
                     if (result != null)
                     {
-                        return Ok(result);
+                        return Ok("{\"status\":true}");
                     }
                     else
                     {
-                        return NotFound();
+                        return NotFound("{\"status\":false}");
                     }
 
-                }else { return BadRequest(); }
+                }else { return BadRequest("{\"status\":false}"); }
 
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest( "{\"status\":false}");
             }
         }
 
@@ -52,22 +52,21 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
                 if (column != null)
                 {
                     var Column = await columnInterface.EditColumn(id, column);
-                    if (Column != null)
+                    if (Column)
                     {
-
-                        return Ok(Column);
+                        return Ok("{\"status\":true}");
                     }
-                    else { return NotFound($"Column with id: {id} is not found"); }
+                    else { return NotFound("{\"status\":false}"); }
                 }
                 else
                 {
-                    return BadRequest();
+                    return BadRequest("{\"status\":false}");
                 }
 
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest("{\"status\":false}");
             }
         }
 
@@ -80,13 +79,13 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
                 var column = await columnInterface.DeleteColumn(id);
                 if (column != null)
                 {
-                    return Ok("success");
+                    return Ok("{\"status\":true}");
                 }
-                return NotFound("not found");
+                return NotFound("{\"status\":false}");
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest("{\"status\":false}");
             }
         }
 
