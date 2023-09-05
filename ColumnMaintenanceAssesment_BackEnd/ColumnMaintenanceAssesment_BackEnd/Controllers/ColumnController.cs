@@ -24,7 +24,7 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
                 if (column != null) 
                 {
                     column.Id = Guid.NewGuid();
-                    var result =await columnInterface.addColumn(column);
+                    var result =await columnInterface.AddColumn(column);
                     if (result != null)
                     {
                         return Ok("{\"status\":true}");
@@ -77,13 +77,13 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
             try
             {
                 var column = await columnInterface.DeleteColumn(id);
-                if (column != null)
+                if (column)
                 {
                     return Ok("{\"status\":true}");
                 }
                 return NotFound("{\"status\":false}");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest("{\"status\":false}");
             }

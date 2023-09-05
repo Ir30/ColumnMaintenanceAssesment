@@ -9,19 +9,8 @@
                     <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 m-2">
                         <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
                             <div class="mb-2">
-                                <label for="exampleInputEmail1" class="form-label">Please Select a Table</label>
-                                <div class="row mb-5">
-                                    <div class="dropdown">
-                                        <a class="btn btn-primary dropdown-toggle"  role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Tables
-                                        </a>
-                                      
-                                        <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuLink">
-                                          <li (click)="ChangeTableId(i.id)"  *ngFor="let i of tableNames">{{i.name}}</li>
-                                        </ul>
-                                      </div>
-                                </div>
-                              </div>
+                                <label for="exampleInputEmail1" class="form-label">Table Name: {{tableName}}</label>
+                            </div>
 
                             <div class="mb-2">
                               <label for="exampleInputEmail1" class="form-label">Name</label>
@@ -41,12 +30,12 @@
                                
                             </div>
                             <div class="mb-1">
-                                <label for="exampleInputPassword1" class="form-label">Size</label>
-                                <input type="number" class="form-control" formControlName="size">
+                                <label for="exampleInputPassword1" class="form-label">Data Size</label>
+                                <input type="number" class="form-control" formControlName="dataSize">
                             </div>
                             <div class="mb-1">
-                                <label for="exampleInputPassword1" class="form-label">Scale</label>
-                                <input type="number" class="form-control" formControlName="scale">
+                                <label for="exampleInputPassword1" class="form-label">Data Scale</label>
+                                <input type="number" class="form-control" formControlName="dataScale">
                             </div>
                             <div class="mb-1 form-check">
                                 <label class="form-check-label" for="exampleCheck1">Encrypted</label>
@@ -60,7 +49,7 @@
                                 <label for="exampleInputPassword1" class="form-label">Comments</label>
                                 <input type="text" class="form-control" formControlName="comments">
                             </div>
-                            <button type="submit" class="btn btn-primary button-submit" [disabled]="!reactiveForm.valid">Submit</button>
+                            <button type="submit" class="btn btn-primary button-submit">Submit</button>
                           </form>
                           <div class="col col-lg-12 ">
                             <button class="btn btn-outline-dark my-2 float-end" routerLink="/">Back -></button>

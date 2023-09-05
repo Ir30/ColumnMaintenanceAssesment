@@ -5,7 +5,7 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services.Interfaces
 {
     public interface TableInterface
     {
-        public Task<List<TableNamesWithIdDto>> getTableNames();
-        public Task<IEnumerable<Aotable>> getColumnByTable(Guid id);
+        public Task<List<TableNamesWithIdDto>> GetTableNames();
+        public Task<IEnumerable<Aotable>> GetColumnByTable(Guid id);
     }
 }

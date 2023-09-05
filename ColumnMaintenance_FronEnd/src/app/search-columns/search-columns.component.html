@@ -3,14 +3,14 @@
         <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
             <div class="row ">
                 <div style="border-radius:15px ;" class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-5 p-5 mb-5  bg-light container-fluid">
-                    <h1 class="text-dark m-1 text-center">SERCH COLUMNS</h1>
+                    <h1 class="text-dark m-1 text-center">SEARCH COLUMNS</h1>
                     <hr class="m-5">
                     
                     <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 m-5">
                         <!-- Table drop down starting -->
                         <div class="row mb-5">
                             <div class="dropdown">
-                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="btn btn-primary dropdown-toggle" id="tableDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 Tables
                                 </a>
                               
@@ -50,18 +50,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let i of columnDetailes | search:searchText | paginate: { itemsPerPage: 5, currentPage: page,totalItems:lengthofData}">
+                                    <tr *ngFor="let i of columnDetailes | search:searchText | paginate: {itemsPerPage: 5, currentPage: page,totalItems:lengthofData, id:'columnPagination'}">
                                         <td>{{i.name}}</td>
                                         <td>{{i.type}}</td>
                                         <td>{{i.comment}}</td>
-                                        <td routerLink="/viewColumns" (click)="sendColumnData(i)">View</td>
-                                        <td style="color: blue;" routerLink="/editColumn" (click)="sendColumnData(i)">Update</td>
-                                        <td (click)="deleteColumn(i.id,i.name)" style="color: red;">Delete</td>
+                                        <td routerLink="/viewColumns" (click)="sendColumnData(i)"><a class="link-secondary">View</a></td>
+                                        <td  routerLink="/editColumn" (click)="sendColumnData(i)"><a class="link-primary">Update</a></td>
+                                        <td><a class="link-danger" (click)="deleteColumn(i.id,i.name)">Delete</a></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="has-text-centered ">
-                                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                            <div class="has-text-center">
+                                <pagination-controls  (pageChange)="page = $event" id="columnPagination"></pagination-controls>
                             </div>
                         </div>
                         <!-- column detiles table Ending -->

@@ -14,7 +14,7 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services
             this.dbContext = dbContext;
         }
 
-        public async Task<Aocolumn> addColumn(Aocolumn column)
+        public async Task<Aocolumn> AddColumn(Aocolumn column)
         {
             await dbContext.Aocolumns.AddAsync(column);
             await dbContext.SaveChangesAsync();
@@ -77,20 +77,14 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services
                     ColumnDetails.DataScale = column.DataScale;
                 }
 
-                if (!string.IsNullOrWhiteSpace(column.Comment))
-                {
-                    ColumnDetails.Comment = column.Comment;
-                }
 
-                if ( column.Encrypted==null )
+                if ( column.Encrypted!=null )
                 {
                     ColumnDetails.Encrypted = column.Encrypted;
                 }
-
-                if (!string.IsNullOrWhiteSpace(column.Distortion))
-                {
-                    ColumnDetails.Distortion = column.Distortion;
-                }
+              
+                ColumnDetails.Distortion = column.Distortion;
+                ColumnDetails.Comment = column.Comment;
 
                 await dbContext.SaveChangesAsync();
                 return true;

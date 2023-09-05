@@ -23,10 +23,8 @@
                                 </div>
                                  
                             </div>
-                            <!-- <div class="mb-2">
-                                <label for="exampleInputEmail1" class="form-label">Table Name</label>
-                                <input type="text" class="form-control"  aria-describedby="emailHelp" formControlName="tableName">
-                            </div> -->
+                            <p>Selected Table: {{this.reactiveForm.value.tableName}}</p>
+                           
                             <div class="mb-2">
                               <label for="exampleInputEmail1" class="form-label">Name</label>
                               <input type="text" class="form-control"  aria-describedby="emailHelp" formControlName="name">
@@ -40,7 +38,6 @@
                               <label for="exampleInputEmail1" class="form-label">Data Type</label>
                                 
                                     <select class="form-select" aria-label="Default select example" formControlName="dataType">
-                                        <option selected>Select a Data Type</option>
                                         <option value="Date">Date</option>
                                         <option value="Decimal">Decimal</option>
                                         <option value="Integer">Integer</option>
@@ -55,20 +52,14 @@
                             </div>
                             <div class="mb-1">
                                 <label for="exampleInputPassword1" class="form-label">Size</label>
-                                <input type="number" class="form-control" formControlName="size">
+                                <input type="number" class="form-control" formControlName="dataSize">
                             </div>
-                            <div>
-                                <small  *ngIf="!reactiveForm.get('size').valid && reactiveForm.get('size').touched">
-                                    Size is a required field</small>
-                            </div>
+                           
                             <div class="mb-1">
                                 <label for="exampleInputPassword1" class="form-label">Scale</label>
-                                <input type="number" class="form-control" formControlName="scale">
+                                <input type="number" class="form-control" formControlName="dataScale">
                             </div>
-                            <div>
-                                <small  *ngIf="!reactiveForm.get('scale').valid && reactiveForm.get('scale').touched">
-                                    Scale is a required field</small>
-                            </div>
+                           
                             <div class="mb-1 form-check">
                                 <label class="form-check-label" for="exampleCheck1">Encrypted</label>
                                 <input type="checkbox" class="form-check-input" formControlName="encrypted">

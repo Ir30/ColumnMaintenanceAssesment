@@ -20,11 +20,11 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
 
         [HttpGet]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> getColumnsByTableId([FromRoute] Guid id)
+        public async Task<IActionResult> GetColumnsByTableId([FromRoute] Guid id)
         {
             try
             {
-                var columns = await tableInterface.getColumnByTable(id);
+                var columns = await tableInterface.GetColumnByTable(id);
                 return Ok(columns);
             }
             catch (Exception ex)
@@ -36,11 +36,11 @@ namespace ColumnMaintenanceAssesment_BackEnd.Controllers
 
         [HttpGet]
         [Route("getAllTableNames")]
-        public async Task<IActionResult> getAllTableNames()
+        public async Task<IActionResult> GetAllTableNames()
         {
             try
             {
-                var names = await tableInterface.getTableNames();
+                var names = await tableInterface.GetTableNames();
                 return Ok(names);
             }
             catch (Exception ex)

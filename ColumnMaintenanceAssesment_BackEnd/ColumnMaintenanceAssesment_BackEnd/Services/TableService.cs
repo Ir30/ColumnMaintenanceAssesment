@@ -18,13 +18,13 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Aotable>> getColumnByTable(Guid id)
+        public async Task<IEnumerable<Aotable>> GetColumnByTable(Guid id)
         {
             var columns = await dbContext.Aotables.Include(t=>t.Aocolumns).Where(t=>t.Id == id).ToListAsync();
             return columns;
         }
 
-        public async Task<List<TableNamesWithIdDto>> getTableNames()
+        public async Task<List<TableNamesWithIdDto>> GetTableNames()
         {
             var tables = await dbContext.Aotables.ToListAsync();
     

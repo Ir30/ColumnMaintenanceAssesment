@@ -13,6 +13,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ViewColumnComponent } from './view-column/view-column.component';
 import { EditColumnComponent } from './edit-column/edit-column.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DataService } from './data.service';
+import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AddColumnComponent,
     ViewColumnComponent,
     EditColumnComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +33,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
