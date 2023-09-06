@@ -95,14 +95,17 @@ export class AddColumnComponent  {
       
       if(value=='Date'){
         this.reactiveForm.get('dataSize').clearValidators();
+        this.reactiveForm.get('dataSize').reset()
         this.reactiveForm.get('dataSize').disable()
         this.reactiveForm.get('dataSize').updateValueAndValidity()
         this.reactiveForm.get('dataScale').clearValidators()
+        this.reactiveForm.get('dataScale').reset()
         this.reactiveForm.get('dataScale').disable()
         this.reactiveForm.get('dataScale').updateValueAndValidity()
 
       }else if(value == 'Integer' || value == 'Text'){
         this.reactiveForm.get('dataScale').clearValidators()
+        this.reactiveForm.get('dataScale').reset()
         this.reactiveForm.get('dataScale').disable()
         this.reactiveForm.get('dataScale').updateValueAndValidity() 
       }
