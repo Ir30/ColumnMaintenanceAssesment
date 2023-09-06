@@ -13,16 +13,18 @@ import { Aocolumn } from '../models/aocolumn.model';
 export class EditColumnComponent {
 
   ngOnInit() {
+    this.getTableNames();
     this.getColumnDataForEdit();
     this.reactiveForm = new FormGroup({
-      name:new FormControl(this.columnData.name),
-      dataType:new FormControl(this.columnData.dataType),
-      dataSize:new FormControl(this.columnData.dataSize),
-      dataScale:new FormControl(this.columnData.dataScale),
+      name:new FormControl(this.columnData.name,Validators.required),
+      dataType:new FormControl(this.columnData.dataType,Validators.required),
+      dataSize:new FormControl(this.columnData.dataSize,Validators.required),
+      dataScale:new FormControl(this.columnData.dataScale,Validators.required),
       encrypted:new FormControl(Boolean(this.columnData.encrypted)),
       distortion:new FormControl(this.columnData.distortion),
       comments:new FormControl(this.columnData.comment)
     });
+    this.selectedDataType=this.reactiveForm.get("dataType").value
   }
 
   constructor(private api:ApiService,private dataService:DataService){}
@@ -30,11 +32,27 @@ export class EditColumnComponent {
   reactiveForm:FormGroup;
   tableName:string=localStorage.getItem('tableName')
   columnData:any={}
+  tableNames:any=[]
+  selectedDataType:string=''
+
+  getTableNames = ()=>{
+    this.api.getTableNames().subscribe(
+      (response:any)=>{
+        this.tableNames=response
+      }
+    )
+  }
+
+  tableId:string=this.columnData.tableId
+  onClickTableSelect =(id:string,name:string)=>{
+    this.tableId = id
+    this.tableName=name   
+  }
 
   onSubmit=()=>{
     const column = new Aocolumn();
 
-    column.tableId=this.columnData.tableId
+    column.tableId=this.tableId
     column.name=this.reactiveForm.value.name
     column.type="User"
     column.description=""
@@ -60,7 +78,28 @@ export class EditColumnComponent {
     this.columnData=this.dataService.getColumnData()    
   }
 
- 
+  handleSelectChange(event:any){
+    
+    this.reactiveForm.get("dataType").valueChanges
+    .subscribe(value=>{ 
+      this.reactiveForm.get('dataSize').setValidators(Validators.required);
+      this.reactiveForm.get('dataSize').updateValueAndValidity()
+      this.reactiveForm.get('dataScale').setValidators(Validators.required)
+      this.reactiveForm.get('dataScale').updateValueAndValidity()  
+      
+      if(value=='Date'){
+        this.reactiveForm.get('dataSize').clearValidators();
+        this.reactiveForm.get('dataSize').updateValueAndValidity()
+        this.reactiveForm.get('dataScale').clearValidators()
+        this.reactiveForm.get('dataScale').updateValueAndValidity()        
+      }else if(value == 'Integer' || value == 'Text'){
+        this.reactiveForm.get('dataScale').clearValidators()
+        this.reactiveForm.get('dataScale').updateValueAndValidity() 
+      }
+    }
+    );
+
+  }
 
   ChangeTableId=(id:string)=>{
     this.columnData.tableId=id

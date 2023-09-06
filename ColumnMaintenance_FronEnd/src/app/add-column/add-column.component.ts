@@ -17,19 +17,22 @@ export class AddColumnComponent  {
       tableName:new FormControl(null),
       name:new FormControl(null,Validators.required),
       dataType:new FormControl(null,Validators.required),
-      dataSize:new FormControl(null),
-      dataScale:new FormControl(null),
+      dataSize:new FormControl(null,Validators.required),
+      dataScale:new FormControl(null,Validators.required),
       encrypted:new FormControl(false),
       distortion:new FormControl(null),
       comments:new FormControl(null)
     });
+
+    this.reactiveForm.get("dataType")?.valueChanges.pipe().subscribe();
+    
   }
  
   constructor(private api:ApiService){
   }
 
 
-
+  selectedDataType:string=''
   reactiveForm:FormGroup;
   tableId:string=''
   
@@ -65,8 +68,7 @@ export class AddColumnComponent  {
       column.comment=this.reactiveForm.value.comments
       column.encrypted=Number(this.reactiveForm.value.encrypted) 
       column.distortion=this.reactiveForm.value.distortion 
-
-
+      
       this.api.addColumn(column).subscribe(
         (response:any)=>{
           if(response){
@@ -77,8 +79,32 @@ export class AddColumnComponent  {
         }
       )
     }
-    
+ 
   }
+
+  handleSelectChange(event:any){
+    
+    this.reactiveForm.get("dataType").valueChanges
+    .subscribe(value=>{ 
+      this.reactiveForm.get('dataSize').setValidators(Validators.required);
+      this.reactiveForm.get('dataSize').updateValueAndValidity()
+      this.reactiveForm.get('dataScale').setValidators(Validators.required)
+      this.reactiveForm.get('dataScale').updateValueAndValidity()  
+      
+      if(value=='Date'){
+        this.reactiveForm.get('dataSize').clearValidators();
+        this.reactiveForm.get('dataSize').updateValueAndValidity()
+        this.reactiveForm.get('dataScale').clearValidators()
+        this.reactiveForm.get('dataScale').updateValueAndValidity()        
+      }else if(value == 'Integer' || value == 'Text'){
+        this.reactiveForm.get('dataScale').clearValidators()
+        this.reactiveForm.get('dataScale').updateValueAndValidity() 
+      }
+    }
+    );
+
+  }
+  
 
 
 }

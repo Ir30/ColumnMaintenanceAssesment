@@ -54,9 +54,9 @@
                                         <td>{{i.name}}</td>
                                         <td>{{i.type}}</td>
                                         <td>{{i.comment}}</td>
-                                        <td routerLink="/viewColumns" (click)="sendColumnData(i)"><a class="link-secondary">View</a></td>
-                                        <td  routerLink="/editColumn" (click)="sendColumnData(i)"><a class="link-primary">Update</a></td>
-                                        <td><a class="link-danger" (click)="deleteColumn(i.id,i.name)">Delete</a></td>
+                                        <td routerLink="/viewColumns" (click)="sendColumnData(i)"><a class="link-secondary cursor">View</a></td>
+                                        <td  routerLink="/editColumn" (click)="sendColumnData(i)"><a class="link-primary cursor">Update</a></td>
+                                        <td><a class="link-danger cursor" (click)="deleteColumn(i.id,i.name)">Delete</a></td>
                                     </tr>
                                 </tbody>
                             </table>
