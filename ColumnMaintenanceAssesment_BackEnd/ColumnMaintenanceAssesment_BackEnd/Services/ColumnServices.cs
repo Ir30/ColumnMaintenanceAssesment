@@ -21,16 +21,16 @@ namespace ColumnMaintenanceAssesment_BackEnd.Services
             return column;
         }
 
-        public async Task<Aocolumn> DeleteColumn(Guid id)
+        public async Task<bool> DeleteColumn(Guid id)
         {
             var column = await dbContext.Aocolumns.FindAsync(id);
             if (column != null)
             {
                 dbContext.Aocolumns.Remove(column);
                 await dbContext.SaveChangesAsync();
-                return column;
+                return true;
             }
-            return null;
+            return false;
         }
 
         public async Task<bool> EditColumn(Guid id, Aocolumn column)
