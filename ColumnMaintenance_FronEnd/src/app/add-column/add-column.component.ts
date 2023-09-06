@@ -87,17 +87,23 @@ export class AddColumnComponent  {
     this.reactiveForm.get("dataType").valueChanges
     .subscribe(value=>{ 
       this.reactiveForm.get('dataSize').setValidators(Validators.required);
+      this.reactiveForm.get('dataSize').enable()
       this.reactiveForm.get('dataSize').updateValueAndValidity()
       this.reactiveForm.get('dataScale').setValidators(Validators.required)
+      this.reactiveForm.get('dataScale').enable()
       this.reactiveForm.get('dataScale').updateValueAndValidity()  
       
       if(value=='Date'){
         this.reactiveForm.get('dataSize').clearValidators();
+        this.reactiveForm.get('dataSize').disable()
         this.reactiveForm.get('dataSize').updateValueAndValidity()
         this.reactiveForm.get('dataScale').clearValidators()
-        this.reactiveForm.get('dataScale').updateValueAndValidity()        
+        this.reactiveForm.get('dataScale').disable()
+        this.reactiveForm.get('dataScale').updateValueAndValidity()
+
       }else if(value == 'Integer' || value == 'Text'){
         this.reactiveForm.get('dataScale').clearValidators()
+        this.reactiveForm.get('dataScale').disable()
         this.reactiveForm.get('dataScale').updateValueAndValidity() 
       }
     }
