@@ -55,15 +55,17 @@ export class SearchColumnsComponent  {
   }
  
   deleteColumn =(id:string,name:string)=>{
-    this.api.deleteColumn(id).subscribe(
-      (response:any)=>{
-        if(response){
-          alert("Column "+name+" deleted successfully")
-          this.getColumnDetailesByTableId(this.tableId,this.selectedTableName)
-        }
-        
+      if(confirm("Are you sure to delete "+name)) {
+        this.api.deleteColumn(id).subscribe(
+          (response:any)=>{
+            if(response){
+              alert("Column "+name+" deleted successfully")
+              this.getColumnDetailesByTableId(this.tableId,this.selectedTableName)
+            }
+            
+          }
+        )
       }
-    )
   }
 
   sendColumnData=(data:any)=>{
@@ -84,5 +86,4 @@ export class SearchColumnsComponent  {
      localStorage. removeItem("tableId"); 
 
   }
-
 }

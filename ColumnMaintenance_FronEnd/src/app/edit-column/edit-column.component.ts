@@ -78,9 +78,9 @@ export class EditColumnComponent {
     this.columnData=this.dataService.getColumnData()    
   }
 
-  handleSelectChange(event:any){ 
+  handleSelectChange(event:any){
     this.reactiveForm.get("dataType").valueChanges
-    .subscribe(value=>{     
+    .subscribe(value=>{  
       this.reactiveForm.get('dataSize').clearValidators()
       this.reactiveForm.get('dataSize').disable()
       this.reactiveForm.get('dataSize').updateValueAndValidity()
@@ -88,7 +88,7 @@ export class EditColumnComponent {
       this.reactiveForm.get('dataScale').disable()
       this.reactiveForm.get('dataScale').updateValueAndValidity() 
       this.size=null
-      this.scale=null  
+      this.scale=null    
       if(value=='Decimal'){
         this.reactiveForm.get('dataSize').setValidators([Validators.required])
         this.reactiveForm.get('dataSize').updateValueAndValidity()
@@ -96,7 +96,7 @@ export class EditColumnComponent {
         this.reactiveForm.get('dataScale').setValidators([Validators.required])
         this.reactiveForm.get('dataScale').updateValueAndValidity()
         this.reactiveForm.get('dataScale').enable()
-      }else if(value == 'Integer' || value == 'Text'){
+      }else if(value == 'Text'){
         this.reactiveForm.get('dataSize').setValidators([Validators.required])
         this.reactiveForm.get('dataSize').updateValueAndValidity() 
         this.reactiveForm.get('dataSize').enable()

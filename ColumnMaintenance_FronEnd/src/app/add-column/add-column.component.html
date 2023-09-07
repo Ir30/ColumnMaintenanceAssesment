@@ -8,22 +8,8 @@
                     
                     <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 m-2">
                         <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
-                            <div class="mb-2">
-                                <div class="row mb-5">
-                                    <label  class="form-label">Please Select a Table <label class="astric">*</label></label>
-                                    <div class="dropdown">
-                                        <a class="btn btn-primary dropdown-toggle"  role="button" id="tableDropDownId" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Tables
-                                        </a>
-                                      
-                                        <ul class="dropdown-menu scrollable-menu" aria-labelledby="tableDropdownMenuLink">
-                                          <li  *ngFor="let i of tableNames" (click)="onClickTableSelect(i.id,i.name)">{{i.name}}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                 
-                            </div>
-                            <p>Selected Table: {{this.reactiveForm.value.tableName}}</p>
+                          
+                            <p>Selected Table: {{selectedTableName}}</p>
                            
                             <div class="mb-2">
                               <label for="name" class="form-label">Name<label class="astric">*</label></label>
@@ -37,7 +23,7 @@
                             <div class="mb-2">
                               <label for="selectedDatatype" class="form-label">Data Type<label class="astric">*</label></label>
                                 
-                                    <select  class="form-select" id="selectedDatatype" name="dataType" aria-label="Default select example"
+                                    <select class="form-select" id="selectedDatatype" name="dataType" aria-label="Default select example"
                                          formControlName="dataType" (ngModelChange)="handleSelectChange($event)" [(ngModel)]="selectedDataType">
                                         <option default value="Date">Date</option>
                                         <option value="Decimal">Decimal</option>
@@ -53,10 +39,11 @@
                             </div>
                             <div class="mb-1">
                                 <label for="dataSize" class="form-label">Size<label *ngIf="isRequiredField('dataSize')" class="astric">*</label></label>
-                                <input   type="number" class="form-control" id="dataSize" name="dataSize" [(ngModel)]="size" formControlName="dataSize">
+                                <input  type="number" class="form-control" id="dataSize" name="dataSize" [(ngModel)]="size" formControlName="dataSize">
                             </div>
                             <small  *ngIf="!reactiveForm.get('dataSize').valid && isSubmitted
-                                && reactiveForm.get('dataType').value !='Date' && reactiveForm.get('dataType').value !='Unique Identifier'">
+                                && reactiveForm.get('dataType').value !='Date' && reactiveForm.get('dataType').value !='Unique Identifier' 
+                                && reactiveForm.get('dataType').value !='Integer' && reactiveForm.get('dataType').value !=''">
                                 Please enter a data size</small>
                             <div class="mb-1">
                                 <label for="dataScale" class="form-label">Scale<label *ngIf="isRequiredField('dataScale')" class="astric">*</label></label>

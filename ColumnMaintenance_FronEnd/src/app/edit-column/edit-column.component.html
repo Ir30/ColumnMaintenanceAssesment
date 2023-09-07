@@ -43,7 +43,8 @@
                                 <input type="number" class="form-control" id="dataSize" name="dataSize" [(ngModel)]="size" formControlName="dataSize">
                             </div>
                             <small  *ngIf="!reactiveForm.get('dataSize').valid && isSubmitted
-                                && reactiveForm.get('dataType').value !='Date' && reactiveForm.get('dataType').value !='Unique Identifier'">
+                                && reactiveForm.get('dataType').value !='Date' && reactiveForm.get('dataType').value !='Unique Identifier'
+                                && reactiveForm.get('dataType').value !='Integer' && reactiveForm.get('dataType').value !=''">
                                 Please enter a data size</small>
                             <div class="mb-1">
                                 <label for="dataScale" class="form-label">Data Scale<label *ngIf="isRequiredField('dataSize')" class="astric">*</label></label>

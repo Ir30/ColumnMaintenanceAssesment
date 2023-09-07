@@ -14,7 +14,6 @@ export class AddColumnComponent  {
     this.getTableNames();
     this.reactiveForm = new FormGroup({
       id:new FormControl('00000000-0000-0000-0000-000000000000'),
-      tableName:new FormControl(null),
       name:new FormControl(null,Validators.required),
       dataType:new FormControl(null,Validators.required),
       dataSize:new FormControl(null),
@@ -23,7 +22,7 @@ export class AddColumnComponent  {
       distortion:new FormControl(null),
       comments:new FormControl(null)
     });
-    
+    this.selectedTableName=localStorage.getItem('tableName')
   }
  
   constructor(private api:ApiService){
@@ -32,15 +31,12 @@ export class AddColumnComponent  {
 
   selectedDataType:string=''
   reactiveForm:FormGroup;
-  tableId:string=''
+  
   size:number=null
   scale:number=null
-  
-  onClickTableSelect =(id:string,name:string)=>{
-    this.tableId = id
-    this.reactiveForm.value.tableName=name    
-  }
 
+
+  selectedTableName:string=''
   tableNames:any=[]
   getTableNames = ()=>{
     this.api.getTableNames().subscribe(
@@ -52,16 +48,12 @@ export class AddColumnComponent  {
 
   isSubmitted:Boolean= false
   onSubmit=()=>{
-    if(this.tableId==''){
-      this.isSubmitted=true
-      alert("please select a table")
-      console.log(this.reactiveForm.valid); 
-    }else if(this.reactiveForm.valid){
+    this.isSubmitted=true
+    if(this.reactiveForm.valid){
       const column = new Aocolumn();
-
       column.id=this.reactiveForm.value.id
       column.name=this.reactiveForm.value.name
-      column.tableId=this.tableId
+      column.tableId=localStorage.getItem("tableId")
       column.type="User"
       column.description=""
       column.dataType=this.reactiveForm.value.dataType 
@@ -105,7 +97,7 @@ export class AddColumnComponent  {
         this.reactiveForm.get('dataScale').setValidators([Validators.required])
         this.reactiveForm.get('dataScale').updateValueAndValidity()
         this.reactiveForm.get('dataScale').enable()
-      }else if(value == 'Integer' || value == 'Text'){
+      }else if(value == 'Text'){
         this.reactiveForm.get('dataSize').setValidators([Validators.required])
         this.reactiveForm.get('dataSize').updateValueAndValidity() 
         this.reactiveForm.get('dataSize').enable()
