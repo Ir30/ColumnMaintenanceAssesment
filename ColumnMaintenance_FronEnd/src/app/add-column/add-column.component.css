@@ -43,13 +43,14 @@
     overflow-y: auto;
 }
 
-input.ng-invalid.ng-touched{
-  border: red 1px solid;
-}
 
-select.ng-invalid.ng-touched{
+
+/* select.ng-invalid{
   border: red 1px solid;
-}
+} */
 small{
+  color: red;
+}
+.astric{
   color: red;
 }

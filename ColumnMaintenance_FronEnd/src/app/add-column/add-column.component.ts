@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { FormControl,FormGroup,Validators } from '@angular/forms'
+import { FormControl,FormGroup,Validators,AbstractControl } from '@angular/forms'
 import { Aocolumn } from '../models/aocolumn.model';
 
 @Component({
@@ -17,14 +17,12 @@ export class AddColumnComponent  {
       tableName:new FormControl(null),
       name:new FormControl(null,Validators.required),
       dataType:new FormControl(null,Validators.required),
-      dataSize:new FormControl(null,Validators.required),
-      dataScale:new FormControl(null,Validators.required),
+      dataSize:new FormControl(null),
+      dataScale:new FormControl(null),
       encrypted:new FormControl(false),
       distortion:new FormControl(null),
       comments:new FormControl(null)
     });
-
-    this.reactiveForm.get("dataType")?.valueChanges.pipe().subscribe();
     
   }
  
@@ -35,6 +33,8 @@ export class AddColumnComponent  {
   selectedDataType:string=''
   reactiveForm:FormGroup;
   tableId:string=''
+  size:number=null
+  scale:number=null
   
   onClickTableSelect =(id:string,name:string)=>{
     this.tableId = id
@@ -50,11 +50,13 @@ export class AddColumnComponent  {
     )
   }
 
+  isSubmitted:Boolean= false
   onSubmit=()=>{
     if(this.tableId==''){
+      this.isSubmitted=true
       alert("please select a table")
-    }
-    else{
+      console.log(this.reactiveForm.valid); 
+    }else if(this.reactiveForm.valid){
       const column = new Aocolumn();
 
       column.id=this.reactiveForm.value.id
@@ -79,40 +81,51 @@ export class AddColumnComponent  {
         }
       )
     }
+    else{
+      alert("Please enter required fields")
+    }
  
   }
 
-  handleSelectChange(event:any){
-    
+  handleSelectChange(event:any){ 
     this.reactiveForm.get("dataType").valueChanges
-    .subscribe(value=>{ 
-      this.reactiveForm.get('dataSize').setValidators(Validators.required);
-      this.reactiveForm.get('dataSize').enable()
+    .subscribe(value=>{
+      this.reactiveForm.get('dataSize').clearValidators()
+      this.reactiveForm.get('dataSize').disable()
       this.reactiveForm.get('dataSize').updateValueAndValidity()
-      this.reactiveForm.get('dataScale').setValidators(Validators.required)
-      this.reactiveForm.get('dataScale').enable()
-      this.reactiveForm.get('dataScale').updateValueAndValidity()  
-      
-      if(value=='Date' || value=='Unique Identifier'){
-        this.reactiveForm.get('dataSize').clearValidators();
-        this.reactiveForm.get('dataSize').reset()
-        this.reactiveForm.get('dataSize').disable()
+      this.reactiveForm.get('dataScale').clearValidators()
+      this.reactiveForm.get('dataScale').disable()
+      this.reactiveForm.get('dataScale').updateValueAndValidity()
+      this.scale=null
+      this.size=null
+      if(value=='Decimal'){
+        this.reactiveForm.get('dataSize').setValidators([Validators.required])
         this.reactiveForm.get('dataSize').updateValueAndValidity()
-        this.reactiveForm.get('dataScale').clearValidators()
-        this.reactiveForm.get('dataScale').reset()
-        this.reactiveForm.get('dataScale').disable()
+        this.reactiveForm.get('dataSize').enable()
+        this.reactiveForm.get('dataScale').setValidators([Validators.required])
         this.reactiveForm.get('dataScale').updateValueAndValidity()
-
+        this.reactiveForm.get('dataScale').enable()
       }else if(value == 'Integer' || value == 'Text'){
-        this.reactiveForm.get('dataScale').clearValidators()
-        this.reactiveForm.get('dataScale').reset()
-        this.reactiveForm.get('dataScale').disable()
-        this.reactiveForm.get('dataScale').updateValueAndValidity() 
-      }
+        this.reactiveForm.get('dataSize').setValidators([Validators.required])
+        this.reactiveForm.get('dataSize').updateValueAndValidity() 
+        this.reactiveForm.get('dataSize').enable()
+      }      
     }
     );
 
   }
+
+  isRequiredField(field: string) {
+    const form_field = this.reactiveForm.get(field);
+    if (!form_field.validator) {
+        return false;
+    }
+
+    const validator = form_field.validator({} as AbstractControl);
+    return (validator && validator['required']);
+}
+
+
   
 
 

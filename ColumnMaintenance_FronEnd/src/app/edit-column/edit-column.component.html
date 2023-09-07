@@ -8,36 +8,21 @@
                     
                     <div class="div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 m-2">
                         <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
-                            <div class="mb-2">
-                                <label  class="form-label">Please Select a Table</label>
-                                <div class="row mb-5">
-                                    <div class="dropdown">
-                                        <a class="btn btn-primary dropdown-toggle"  role="button" id="tableDropDownId" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Tables
-                                        </a>
-                                      
-                                        <ul class="dropdown-menu scrollable-menu" aria-labelledby="tableDropdownMenuLink">
-                                          <li  *ngFor="let i of tableNames" (click)="onClickTableSelect(i.id,i.name)">{{i.name}}</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                 
-                            </div>
-
+                            
                             <div class="mb-2">
                                 <label class="form-label">Table Name: {{tableName}}</label>
                             </div>
 
                             <div class="mb-2">
-                              <label for="name" class="form-label">Name</label>
+                              <label for="name" class="form-label">Name<label class="astric">*</label></label>
                               <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" formControlName="name">
                             </div>
                             <div>
-                                <small  *ngIf="!reactiveForm.get('name').valid && reactiveForm.get('name').touched">
+                                <small  *ngIf="!reactiveForm.get('name').valid && isSubmitted">
                                     Name is a required field</small>
                             </div>
                             <div class="mb-2">
-                              <label for="dataType" class="form-label">Data Type</label>
+                              <label for="dataType" class="form-label">Data Type<label class="astric">*</label></label>
                                 
                                     <select class="form-select" id="dataType" name="dataType" 
                                         (ngModelChange)="handleSelectChange($event)" formControlName="dataType" [(ngModel)]="selectedDataType">
@@ -50,23 +35,23 @@
                                
                             </div>
                             <div>
-                                <small  *ngIf="!reactiveForm.get('dataType').valid && reactiveForm.get('dataType').touched">
+                                <small  *ngIf="!reactiveForm.get('dataType').valid && isSubmitted">
                                     Please select a data type</small>
                             </div>
                             <div class="mb-1">
-                                <label for="dataSize" class="form-label">Data Size</label>
-                                <input type="number" class="form-control" id="dataSize" name="dataSize" formControlName="dataSize">
+                                <label for="dataSize" class="form-label">Data Size<label *ngIf="isRequiredField('dataSize')" class="astric">*</label></label>
+                                <input type="number" class="form-control" id="dataSize" name="dataSize" [(ngModel)]="size" formControlName="dataSize">
                             </div>
-                            <small  *ngIf="!reactiveForm.get('dataSize').valid && reactiveForm.get('dataSize').touched
+                            <small  *ngIf="!reactiveForm.get('dataSize').valid && isSubmitted
                                 && reactiveForm.get('dataType').value !='Date' && reactiveForm.get('dataType').value !='Unique Identifier'">
-                                Please select a data size</small>
+                                Please enter a data size</small>
                             <div class="mb-1">
-                                <label for="dataScale" class="form-label">Data Scale</label>
-                                <input type="number" class="form-control" id="dataScale" name="dataScale" formControlName="dataScale">
+                                <label for="dataScale" class="form-label">Data Scale<label *ngIf="isRequiredField('dataSize')" class="astric">*</label></label>
+                                <input type="number" class="form-control" id="dataScale" name="dataScale" [(ngModel)]="scale" formControlName="dataScale">
                             </div>
-                            <small  *ngIf="!reactiveForm.get('dataScale').valid && reactiveForm.get('dataScale').touched
-                            && reactiveForm.get('dataType').value =='Decimal'">
-                            Please select a data scale</small>
+                            <small  *ngIf="!reactiveForm.get('dataScale').valid && isSubmitted
+                            && reactiveForm.get('dataType').value =='Decimal' ">
+                            Please enter a data scale</small>
                             <div class="mb-1 form-check">
                                 <label class="form-check-label" for="encrypted">Encrypted</label>
                                 <input type="checkbox" class="form-check-input" id="encrypted" name="encrypted" formControlName="encrypted">
@@ -79,7 +64,7 @@
                                 <label for="comments" class="form-label">Comments</label>
                                 <input type="text" class="form-control" id="comments" name="comments" formControlName="comments">
                             </div>
-                            <button type="submit" class="btn btn-primary button-submit" [disabled]="!reactiveForm.valid">Submit</button>
+                            <button type="submit" class="btn btn-primary button-submit">Submit</button>
                           </form>
                           <div class="col col-lg-12 ">
                             <button class="btn btn-outline-dark my-2 float-end" routerLink="/">Back -></button>

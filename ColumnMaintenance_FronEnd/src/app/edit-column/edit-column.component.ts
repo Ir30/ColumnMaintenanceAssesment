@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { FormControl,FormGroup,Validators } from '@angular/forms'
+import { FormControl,FormGroup,Validators,AbstractControl } from '@angular/forms'
 import { DataService } from '../data.service';
 import { Aocolumn } from '../models/aocolumn.model';
 
@@ -13,13 +13,12 @@ import { Aocolumn } from '../models/aocolumn.model';
 export class EditColumnComponent {
 
   ngOnInit() {
-    this.getTableNames();
     this.getColumnDataForEdit();
     this.reactiveForm = new FormGroup({
       name:new FormControl(this.columnData.name,Validators.required),
       dataType:new FormControl(this.columnData.dataType,Validators.required),
-      dataSize:new FormControl(this.columnData.dataSize,Validators.required),
-      dataScale:new FormControl(this.columnData.dataScale,Validators.required),
+      dataSize:new FormControl(this.columnData.dataSize),
+      dataScale:new FormControl(this.columnData.dataScale),
       encrypted:new FormControl(Boolean(this.columnData.encrypted)),
       distortion:new FormControl(this.columnData.distortion),
       comments:new FormControl(this.columnData.comment)
@@ -32,16 +31,11 @@ export class EditColumnComponent {
   reactiveForm:FormGroup;
   tableName:string=localStorage.getItem('tableName')
   columnData:any={}
-  tableNames:any=[]
   selectedDataType:string=''
+  size:number=null
+  scale:number=null
 
-  getTableNames = ()=>{
-    this.api.getTableNames().subscribe(
-      (response:any)=>{
-        this.tableNames=response
-      }
-    )
-  }
+  
 
   tableId:string=this.columnData.tableId
   onClickTableSelect =(id:string,name:string)=>{
@@ -49,67 +43,78 @@ export class EditColumnComponent {
     this.tableName=name   
   }
 
+  isSubmitted:boolean=false
   onSubmit=()=>{
-    const column = new Aocolumn();
-
-    column.tableId=this.tableId
-    column.name=this.reactiveForm.value.name
-    column.type="User"
-    column.description=""
-    column.dataType=this.reactiveForm.value.dataType 
-    column.dataSize=this.reactiveForm.value.dataSize 
-    column.dataScale=this.reactiveForm.value.dataScale 
-    column.comment=this.reactiveForm.value.comments
-    column.encrypted=Number(this.reactiveForm.value.encrypted) 
-    column.distortion=this.reactiveForm.value.distortion 
-    
-    this.api.editColumn(column,this.columnData.id).subscribe(
-      (response:any)=>{
-        if(response){
-          alert("Updated the data successfully")
-        }else{
-          alert("Update failed. Something went wrong!!!")
+    this.isSubmitted=true
+    if(this.reactiveForm.valid){
+      const column = new Aocolumn();
+      column.tableId=this.columnData.tableId
+      column.name=this.reactiveForm.value.name
+      column.type="User"
+      column.description=""
+      column.dataType=this.reactiveForm.value.dataType 
+      column.dataSize=this.reactiveForm.value.dataSize 
+      column.dataScale=this.reactiveForm.value.dataScale 
+      column.comment=this.reactiveForm.value.comments
+      column.encrypted=Number(this.reactiveForm.value.encrypted) 
+      column.distortion=this.reactiveForm.value.distortion 
+      
+      this.api.editColumn(column,this.columnData.id).subscribe(
+        (response:any)=>{
+          if(response){
+            alert("Updated the data successfully")
+          }else{
+            alert("Update failed. Something went wrong!!!")
+          }
         }
-      }
-    )
+      )
+    }else{
+      alert("Please enter required data")
+    }
+   
   }
 
   getColumnDataForEdit=()=>{
     this.columnData=this.dataService.getColumnData()    
   }
 
-  handleSelectChange(event:any){
-    
+  handleSelectChange(event:any){ 
     this.reactiveForm.get("dataType").valueChanges
-    .subscribe(value=>{ 
-      this.reactiveForm.get('dataSize').setValidators(Validators.required);
-      this.reactiveForm.get('dataSize').enable()
+    .subscribe(value=>{     
+      this.reactiveForm.get('dataSize').clearValidators()
+      this.reactiveForm.get('dataSize').disable()
       this.reactiveForm.get('dataSize').updateValueAndValidity()
-      this.reactiveForm.get('dataScale').setValidators(Validators.required)
-      this.reactiveForm.get('dataScale').enable()
-      this.reactiveForm.get('dataScale').updateValueAndValidity()  
-      
-      if(value=='Date' || value == 'Unique Identifier'){
-        this.reactiveForm.get('dataSize').clearValidators();
-        this.reactiveForm.get('dataSize').reset()
-        this.reactiveForm.get('dataSize').disable()
+      this.reactiveForm.get('dataScale').clearValidators()
+      this.reactiveForm.get('dataScale').disable()
+      this.reactiveForm.get('dataScale').updateValueAndValidity() 
+      this.size=null
+      this.scale=null  
+      if(value=='Decimal'){
+        this.reactiveForm.get('dataSize').setValidators([Validators.required])
         this.reactiveForm.get('dataSize').updateValueAndValidity()
-        this.reactiveForm.get('dataScale').clearValidators()
-        this.reactiveForm.get('dataScale').reset()
-        this.reactiveForm.get('dataScale').disable()
-        this.reactiveForm.get('dataScale').updateValueAndValidity()        
+        this.reactiveForm.get('dataSize').enable()
+        this.reactiveForm.get('dataScale').setValidators([Validators.required])
+        this.reactiveForm.get('dataScale').updateValueAndValidity()
+        this.reactiveForm.get('dataScale').enable()
       }else if(value == 'Integer' || value == 'Text'){
-        this.reactiveForm.get('dataScale').clearValidators()
-        this.reactiveForm.get('dataScale').reset()
-        this.reactiveForm.get('dataScale').disable()
-        this.reactiveForm.get('dataScale').updateValueAndValidity() 
-      }
+        this.reactiveForm.get('dataSize').setValidators([Validators.required])
+        this.reactiveForm.get('dataSize').updateValueAndValidity() 
+        this.reactiveForm.get('dataSize').enable()
+      }      
     }
     );
-
   }
-
   ChangeTableId=(id:string)=>{
     this.columnData.tableId=id
   }
+
+  isRequiredField(field: string) {
+    const form_field = this.reactiveForm.get(field);
+    if (!form_field.validator) {
+        return false;
+    }
+
+    const validator = form_field.validator({} as AbstractControl);
+    return (validator && validator['required']);
+}
 }
