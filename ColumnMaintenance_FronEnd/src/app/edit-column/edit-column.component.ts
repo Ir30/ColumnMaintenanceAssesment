@@ -89,7 +89,7 @@ export class EditColumnComponent {
       this.reactiveForm.get('dataScale').enable()
       this.reactiveForm.get('dataScale').updateValueAndValidity()  
       
-      if(value=='Date'){
+      if(value=='Date' || value == 'Unique Identifier'){
         this.reactiveForm.get('dataSize').clearValidators();
         this.reactiveForm.get('dataSize').reset()
         this.reactiveForm.get('dataSize').disable()
